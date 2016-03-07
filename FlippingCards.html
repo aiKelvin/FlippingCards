@@ -1,7 +1,70 @@
 <!DOCTYPE html>
 <html>
+<script>
+//This is the Audio component
+var audio, playbtn;
+window.addEventListener("load", initAudioPlayer);
+function initAudioPlayer(){
+	audio = new Audio();
+	audio.src = "audio/a-ha - Take On Me (Official Video).mp3";
+	audio.loop = true;
+	audio.play();
+	//Set object references
+	playbtn = document.getElementById("playpausebtn");
+	mutebtn = document.getElementById("mutebtn");
+	//Add Event Handling
+	playbtn.addEventListener("click", playPause);
+	mutebtn.addEventListener("click", mute);
+
+	//Functions
+	function playPause(){
+		if(audio.paused){
+			audio.play();
+			//Can set image here for pause button
+		}
+		else{
+			audio.pause();
+			//Can set image here for play button
+		}
+	}
+
+	function mute(){
+		if(audio.muted){
+			audio.muted = false;
+			//Can set image
+		}
+		else{
+			audio.muted = true;
+			//Can set image
+		}
+	}
+}
+
+
+</script>
 <head>
 <style>
+body{
+	background:#666;
+}
+
+button#playpausebtn{
+	background: url(images/pause.png);
+	border:none;
+	width:auto;
+	height:auto;
+	cursor:pointer;
+	outline:none;
+}
+
+button#mutebtn{
+	background: url(images/mute.jpg);
+	border:none;
+	width:auto;
+	height:auto;
+	cursor:pointer;
+	outline:none;
+}
 .flip3D{ width:300px; height:200px; margin:10px; float:left; }
 
 .flip3D > .front{
@@ -43,9 +106,12 @@
 }
 
 </style>
+
 </head>
 
 <body>
+<button id="playpausebtn">Play/Pause</button>
+<button id="mutebtn">Mute/Unmute</button>
 
 <div class="flip3D">
 	<div class="front"><p id="text">Mushroom</p></div>
